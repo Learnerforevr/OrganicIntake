@@ -107,11 +107,22 @@ public class ProductServiceImpl implements ProductService {
                 }
 
                 if (row.getCell(1) != null) {
-                    product.setCategory(ProductCategory.valueOf(row.getCell(1).getStringCellValue().toUpperCase()));
+                    product.setDescription(row.getCell(1).getStringCellValue());
                 }
 
                 if (row.getCell(2) != null) {
-                    product.setPrice(BigDecimal.valueOf(row.getCell(2).getNumericCellValue()));
+                    product.setUnit(row.getCell(2).getStringCellValue());
+                }
+
+                if (row.getCell(3) != null) {
+                    product.setPrice(BigDecimal.valueOf(row.getCell(3).getNumericCellValue()));}
+
+                if (row.getCell(4) != null) {
+                    product.setCategory(ProductCategory.valueOf(row.getCell(4).getStringCellValue()));
+                }
+
+                if (row.getCell(5) != null) {
+                    product.setStatus(ProductStatus.valueOf(row.getCell(5).getStringCellValue()));
                 }
 
                 products.add(product);
