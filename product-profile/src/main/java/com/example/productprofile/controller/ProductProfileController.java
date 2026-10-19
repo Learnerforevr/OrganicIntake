@@ -9,8 +9,10 @@ import com.example.productprofile.service.ProductService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.net.URI;
 import java.util.List;
@@ -30,6 +32,13 @@ public class ProductProfileController {
         var response = productService.createProduct(request);
         var location = URI.create(String.format("/api/v1/products/%s", response.id()));
         return ResponseEntity.created(location).body(response);
+    }
+
+    @PostMapping(value = "/bulk", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public ResponseEntity<String> createProductInBulk(@RequestParam("file") MultipartFile file) {
+        log.info("Received request to bulk create products from file: {}", file.getOriginalFilename());
+        String responseMessage = productService.createProductInBulk(file);
+        return ResponseEntity.ok(responseMessage);
     }
 
     @GetMapping("/{id}")
