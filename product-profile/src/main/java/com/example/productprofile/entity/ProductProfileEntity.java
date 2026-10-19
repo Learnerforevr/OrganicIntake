@@ -3,6 +3,7 @@ package com.example.productprofile.entity;
 import com.example.productprofile.enums.ProductCategory;
 import com.example.productprofile.enums.ProductStatus;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.SQLDelete;
@@ -11,6 +12,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 import java.math.BigDecimal;
 import java.time.Instant;
+import java.time.LocalDate;
 import java.util.Objects;
 import java.util.UUID;
 
@@ -70,6 +72,12 @@ public class ProductProfileEntity
     @UpdateTimestamp
     @Column(name = "updated_at", nullable = false)
     private Instant updatedAt;
+
+    @NotNull
+    private LocalDate manufacturedDate;
+
+    @NotNull
+    private LocalDate expiryDate;
 
     @Override
     public boolean equals(Object o) {

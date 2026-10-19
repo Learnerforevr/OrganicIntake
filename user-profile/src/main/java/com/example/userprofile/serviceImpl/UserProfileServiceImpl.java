@@ -1,9 +1,12 @@
 package com.example.userprofile.serviceImpl;
 
+import com.example.userprofile.entity.UserEntity;
+import com.example.userprofile.exception.IncorrectPasswordEntry;
 import com.example.userprofile.exception.UserAlreadyExistsException;
 import com.example.userprofile.exception.UserNotFoundException;
 import com.example.userprofile.mapper.UserProfileMapper;
 import com.example.userprofile.repo.UserProfileRepo;
+import com.example.userprofile.requestDto.UserLoginRequestDto;
 import com.example.userprofile.requestDto.UserRegistrationRequestDto;
 import com.example.userprofile.responseDto.UserResponseDto;
 import com.example.userprofile.service.UserProfileService;
@@ -13,6 +16,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @Slf4j
@@ -40,6 +44,21 @@ public class UserProfileServiceImpl implements UserProfileService {
 
         log.info("Successfully registered user with ID: {}", savedUser.getId());
         return userMapper.toResponse(savedUser);
+    }
+
+    @Override
+    public UserResponseDto userLogin(UserLoginRequestDto userLoginRequestDto) {
+        Optional<UserEntity> existingUserEntity = userRepository.findByEmail(userLoginRequestDto.email());
+        if (existingUserEntity.isPresent()) {
+            UserEntity userEntity = existingUserEntity.get();
+            if (userEntity.getPasswordHash().equals(userLoginRequestDto.password())) {
+                return userMapper.toResponse(userEntity);
+            }
+            else{
+               throw  new IncorrectPasswordEntry("Incorrect password entry");
+            }
+        }
+        throw new UserNotFoundException("User not found");
     }
 
     @Override

@@ -1,5 +1,6 @@
 package com.example.userprofile.controller;
 
+import com.example.userprofile.requestDto.UserLoginRequestDto;
 import com.example.userprofile.requestDto.UserRegistrationRequestDto;
 import com.example.userprofile.responseDto.UserResponseDto;
 import com.example.userprofile.service.UserProfileService;
@@ -32,6 +33,15 @@ public class UserProfileController {
 
         var location = URI.create(String.format("/api/v1/users/%s", createdUser.id()));
         return ResponseEntity.created(location).body(createdUser);
+    }
+
+    /**
+     * User login.
+     */
+    @PostMapping("/login")
+    public ResponseEntity<UserResponseDto> login(@Valid @RequestBody UserLoginRequestDto request) {
+        log.info("Received request to login user with email: {}", request.email());
+        return ResponseEntity.ok(userProfileService.userLogin(request));
     }
 
     /**
