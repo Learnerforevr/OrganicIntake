@@ -1,0 +1,58 @@
+:root {
+  /* OrganicIntake brand colors */
+  --color-background: #FDFBF7;
+  --color-primary: #73A942;
+  --color-forest: #344E41;
+  --color-sage: #A3B18A;
+
+  /* Supporting colors */
+  --color-primary-hover: #638F37;
+  --color-sage-light: #E7EBDD;
+  --color-surface: #FFFEFC;
+  --color-border: #E2E6DB;
+  --color-text: #344E41;
+  --color-text-muted: #68756A;
+  --color-error: #B42318;
+  --color-success: #34764A;
+
+  /* Typography */
+  --font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", sans-serif;
+
+  --font-size-xs: 0.75rem;
+  --font-size-sm: 0.875rem;
+  --font-size-base: 1rem;
+  --font-size-lg: 1.125rem;
+  --font-size-xl: 1.25rem;
+  --font-size-2xl: 1.5rem;
+  --font-size-3xl: 2rem;
+  --font-size-4xl: 3rem;
+
+  /* Layout */
+  --container-width: 1200px;
+  --header-height: 76px;
+
+  /* Spacing */
+  --spacing-xs: 0.25rem;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --spacing-xl: 2rem;
+  --spacing-2xl: 3rem;
+  --spacing-3xl: 4rem;
+
+  /* Corners and shadows */
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 18px;
+  --radius-xl: 24px;
+  --radius-full: 9999px;
+
+  --shadow-sm: 0 2px 8px rgba(52, 78, 65, 0.06);
+  --shadow-md: 0 8px 24px rgba(52, 78, 65, 0.10);
+  --shadow-lg: 0 16px 40px rgba(52, 78, 65, 0.14);
+
+  /* Transitions */
+  --transition-fast: 150ms ease;
+  --transition-normal: 250ms ease;
+}

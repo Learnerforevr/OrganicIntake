@@ -1,0 +1,230 @@
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+
+  width: 100%;
+  background: rgba(253, 251, 247, 0.96);
+
+  border-bottom: 1px solid var(--color-border);
+  box-shadow: var(--shadow-sm);
+
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+}
+
+.site-header__inner {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-lg);
+
+  min-height: var(--header-height);
+}
+
+/* Brand */
+
+.site-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  flex-shrink: 0;
+}
+
+.site-brand__icon {
+  display: grid;
+  place-items: center;
+
+  width: 40px;
+  height: 40px;
+
+  color: var(--color-background);
+  background: var(--color-forest);
+
+  border-radius: var(--radius-md);
+}
+
+.site-brand__name {
+  color: var(--color-forest);
+  font-size: 1.25rem;
+  font-weight: 750;
+  letter-spacing: -0.04em;
+}
+
+.site-brand__name span {
+  color: var(--color-primary);
+}
+
+/* Navigation */
+
+.site-header__nav {
+  display: flex;
+  align-items: center;
+  gap: clamp(1rem, 2.5vw, 2rem);
+}
+
+.site-header__link {
+  color: var(--color-forest);
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  white-space: nowrap;
+
+  transition: color var(--transition-fast);
+}
+
+.site-header__link:hover,
+.site-header__back-link:hover {
+  color: var(--color-primary-hover);
+}
+
+.site-header__actions {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-lg);
+}
+
+.site-header__cta {
+  gap: 0.6rem;
+  white-space: nowrap;
+}
+
+.site-header__back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+
+  color: var(--color-forest);
+  font-size: var(--font-size-sm);
+  font-weight: 650;
+}
+
+/* Mobile menu button */
+
+.site-header__toggle {
+  display: none;
+  align-items: center;
+  justify-content: center;
+
+  width: 44px;
+  height: 44px;
+
+  color: var(--color-forest);
+  background: var(--color-sage-light);
+
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+
+  transition: background-color var(--transition-normal);
+}
+
+.site-header__toggle:hover {
+  background: var(--color-sage);
+}
+
+/* Authentication header */
+
+.site-header--auth .site-header__inner {
+  justify-content: space-between;
+}
+
+/* Tablet and mobile */
+
+@media (max-width: 760px) {
+  .site-header__inner {
+    gap: var(--spacing-md);
+  }
+
+  .site-header__toggle {
+    display: inline-flex;
+    flex-shrink: 0;
+  }
+
+  .site-header__nav {
+    position: absolute;
+    top: calc(100% + 1px);
+    left: 0;
+    right: 0;
+
+    display: none;
+    align-items: stretch;
+    flex-direction: column;
+    gap: 0;
+
+    padding: 0.75rem 1rem 1rem;
+
+    background: var(--color-background);
+    border: 1px solid var(--color-border);
+    border-top: 0;
+    border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+    box-shadow: var(--shadow-md);
+  }
+
+  .site-header__nav.is-open {
+    display: flex;
+    animation: menu-enter 180ms ease-out;
+  }
+
+  .site-header__link {
+    display: block;
+    width: 100%;
+    padding: 0.85rem 0.5rem;
+  }
+
+  .site-header__actions {
+    align-items: stretch;
+    flex-direction: column;
+    gap: 0.5rem;
+
+    margin-top: 0.5rem;
+    padding-top: 0.75rem;
+
+    border-top: 1px solid var(--color-border);
+  }
+
+  .site-header__actions > .site-header__link {
+    padding-left: 0.5rem;
+  }
+
+  .site-header__cta {
+    width: 100%;
+    min-height: 48px;
+  }
+
+  .site-header__back-link {
+    padding: 0.75rem 0.5rem;
+  }
+
+  /* Keep the simplified authentication header visible. */
+  .site-header--auth .site-header__nav {
+    position: static;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    padding: 0;
+    background: transparent;
+    border: 0;
+    box-shadow: none;
+  }
+}
+
+@keyframes menu-enter {
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .site-header__nav.is-open {
+    animation: none;
+  }
+}
